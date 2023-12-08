@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/v1/category")
 public class CategoryControllerV1 {
@@ -62,6 +64,15 @@ public class CategoryControllerV1 {
         }
         catch (Exception e){
             return ResponseEntity.badRequest().build();
+        }
+    }
+    @PostMapping("/categoryName")
+    public ResponseEntity<List<CategoryDto>> findCategoriesByName(@RequestBody FindByCategoryNameDto model) {
+        try {
+            return ResponseEntity.ok(categoryFacade.findByCategoryName(model));
+        }
+        catch (Exception e){
+            return ResponseEntity.notFound().build();
         }
     }
 
