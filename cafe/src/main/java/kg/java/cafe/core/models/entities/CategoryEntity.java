@@ -1,4 +1,4 @@
-package kg.java.cafe.models.entities;
+package kg.java.cafe.core.models.entities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
