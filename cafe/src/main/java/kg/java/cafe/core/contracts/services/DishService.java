@@ -17,4 +17,5 @@ public interface DishService {
     DishDto findById(FindByIdDishDto model) throws EntityNotFoundException;
 
     List<DishDto> findByCategoryName(FindDishesByCategoryNameDto model);
+    List<DishDto> findByPrice(FindDishesByPrice model);
 }

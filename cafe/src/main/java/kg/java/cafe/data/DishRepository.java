@@ -17,4 +17,10 @@ public interface DishRepository extends JpaRepository<DishEntity,Long> {
             "where d.category.name=:categoryName" +
             " order by d.id")
     List<DishEntity> findByCategoryName(@Param("categoryName")String categoryName);
+
+    @Query("select d from DishEntity d " +
+            "where d.price>=:priceFrom and d.price<=:priceTo" +
+            " order by d.price desc ")
+    List<DishEntity> findByPrice(@Param("priceFrom") Double priceFrom,
+                                 @Param("priceTo") Double priceTo);
 }

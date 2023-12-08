@@ -42,4 +42,9 @@ public class DishFacadeImpl implements DishFacade {
     public List<DishDto> findByCategoryName(FindDishesByCategoryNameDto model) {
         return dishService.findByCategoryName(model);
     }
+
+    @Override
+    public List<DishDto> findByPrice(FindDishesByPrice model) {
+        return dishService.findByPrice(model);
+    }
 }

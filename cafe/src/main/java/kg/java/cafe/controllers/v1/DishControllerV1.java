@@ -76,6 +76,17 @@ public class DishControllerV1 {
             return ResponseEntity.notFound().build();
         }
     }
+    @PostMapping("/price")
+    public ResponseEntity<List<DishDto>> findByPrice(@RequestBody FindDishesByPrice model) {
+        try {
+            return ResponseEntity.ok(dishFacade.findByPrice(model));
+        }
+        catch (Exception e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+
 
 
 }
