@@ -8,6 +8,8 @@ import kg.java.cafe.core.models.dtos.dish.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class DishFacadeImpl implements DishFacade {
     private final DishService dishService;
@@ -34,5 +36,10 @@ public class DishFacadeImpl implements DishFacade {
     @Override
     public DishDto findById(FindByIdDishDto model) throws EntityNotFoundException {
         return dishService.findById(model);
+    }
+
+    @Override
+    public List<DishDto> findByCategoryName(FindDishesByCategoryNameDto model) {
+        return dishService.findByCategoryName(model);
     }
 }

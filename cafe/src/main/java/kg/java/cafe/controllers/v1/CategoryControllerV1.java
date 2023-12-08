@@ -4,6 +4,8 @@ import kg.java.cafe.core.contracts.facades.CategoryFacade;
 import kg.java.cafe.core.exceptions.EntityDuplicateException;
 import kg.java.cafe.core.exceptions.EntityNotFoundException;
 import kg.java.cafe.core.models.dtos.category.*;
+import kg.java.cafe.core.models.dtos.dish.DishDto;
+import kg.java.cafe.core.models.dtos.dish.FindDishesByCategoryNameDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -75,5 +77,6 @@ public class CategoryControllerV1 {
             return ResponseEntity.notFound().build();
         }
     }
+
 
 }
