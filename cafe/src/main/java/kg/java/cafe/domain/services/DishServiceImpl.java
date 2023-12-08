@@ -71,5 +71,11 @@ public class DishServiceImpl implements DishService {
         return dishes.stream().map(dishMapper::toDomain).collect(Collectors.toList());
     }
 
+    @Override
+    public List<DishDto> findByPrice(FindDishesByPrice model) {
+        var dishes = dishRepository.findByPrice(model.getPriceFrom(), model.getPriceTo());
+        return dishes.stream().map(dishMapper::toDomain).collect(Collectors.toList());
+    }
+
 
 }

@@ -13,4 +13,5 @@ public interface DishFacade {
     HttpStatus delete(DeleteDishDto model) throws EntityNotFoundException;
     DishDto findById(FindByIdDishDto model) throws EntityNotFoundException;
     List<DishDto> findByCategoryName(FindDishesByCategoryNameDto model);
+    List<DishDto> findByPrice(FindDishesByPrice model);
 }
