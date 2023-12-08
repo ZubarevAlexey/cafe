@@ -9,6 +9,9 @@ import kg.java.cafe.data.CategoryRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class CategoryServiceImpl implements CategoryService {
     private final CategoryRepository categoryRepository;
@@ -50,5 +53,11 @@ public class CategoryServiceImpl implements CategoryService {
     public CategoryDto findById(FindByIdCategoryDto model) throws EntityNotFoundException {
         var category = categoryRepository.findById(model.getId()).orElseThrow(EntityNotFoundException::new);
         return categoryMapper.toDomain(category);
+    }
+
+    @Override
+    public List<CategoryDto> findByCategoryName(FindByCategoryNameDto model) {
+        var categories = categoryRepository.findCategoryEntitiesByNameContains(model.getName());
+        return categories.stream().map(categoryMapper::toDomain).collect(Collectors.toList());
     }
 }
