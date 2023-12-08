@@ -1,5 +1,6 @@
 package kg.java.cafe.domain.services;
 
+import jakarta.transaction.Transactional;
 import kg.java.cafe.core.contracts.services.DishService;
 import kg.java.cafe.core.exceptions.EntityDuplicateException;
 import kg.java.cafe.core.exceptions.EntityNotFoundException;
@@ -10,7 +11,11 @@ import kg.java.cafe.data.DishRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
+@Transactional
 public class DishServiceImpl implements DishService {
     private final DishRepository dishRepository;
     private final DishMapper dishMapper;
@@ -59,4 +64,12 @@ public class DishServiceImpl implements DishService {
         var dish = dishRepository.findById(model.getId()).orElseThrow(EntityNotFoundException::new);
         return dishMapper.toDomain(dish);
     }
+
+    @Override
+    public List<DishDto> findByCategoryName(FindDishesByCategoryNameDto model) {
+        var dishes = dishRepository.findByCategoryName(model.getCategoryName());
+        return dishes.stream().map(dishMapper::toDomain).collect(Collectors.toList());
+    }
+
+
 }

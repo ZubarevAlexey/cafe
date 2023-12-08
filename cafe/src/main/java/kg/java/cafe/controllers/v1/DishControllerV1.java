@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/v1/dish")
 public class DishControllerV1 {
@@ -63,6 +65,15 @@ public class DishControllerV1 {
         }
         catch (Exception e){
             return ResponseEntity.badRequest().build();
+        }
+    }
+    @PostMapping("/categoryName")
+    public ResponseEntity<List<DishDto>> findByCategoryName(@RequestBody FindDishesByCategoryNameDto model) {
+        try {
+            return ResponseEntity.ok(dishFacade.findByCategoryName(model));
+        }
+        catch (Exception e) {
+            return ResponseEntity.notFound().build();
         }
     }
 
